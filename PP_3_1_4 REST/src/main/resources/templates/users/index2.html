@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Admin Panel</title>
+    <link rel="icon" type="image/png" href="https://e7.pngegg.com/pngimages/6/979/png-clipart-spring-framework-computer-icons-spring-web-flow-java-advancement-leaf-logo.png">
+  </head>
+  <body>
+
+
+    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+      <a class="navbar-brand col-md-3 cl-lg-2 me-0 px-3" href="#">
+        <div  style="display: flex; justify-content: space-between;">
+           <!-- <span class="navbar-text"> -->
+            <p id="header" class="fw-bold" ></p>
+            &ensp; <p id="headerRoles"></p>
+    <!-- </span> -->
+        </div>
+      </a>
+      <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+          <a class="nav-link" th:href="@{/logout}">Выйти</a>
+        </li>
+      </ul>
+    </header>
+
+    <div class="container-fluid  ">
+      <div class="row  ">
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 bg-white d-md-block sidebar collapse vh-100 d-inline-block ">
+          <div class="position-sticky pt-3">
+            <ul class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+            <li class="nav-item">
+              <a id="adminTable1" class="nav-link active" aria-current="page" href="#AdminPanel" data-toggle="tab"  >
+                <span data-feather="home"></span>
+                Admin
+              </a>
+            </li>
+            <li class="nav-item">
+              <a id="userBtn" class="nav-link " aria-current="page" href="#UserPanel" data-toggle="tab">
+                <span data-feather="file"></span>
+                User
+              </a>
+            </li>
+            </ul>
+          </div>
+        </nav >
+
+        <div class= "tab-content col-md-9 ">
+          <div role="tabpanel" class="tab-pane bg-light active" id="AdminPanel">
+            <br/>
+            <h3>
+              Admin panel
+            </h3>
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link active" id="homeTab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Admin</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="profileTab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false" type = "submit" >User</a>
+              </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div id="tabContent" class="tab-content border">
+
+              <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                <h3>
+                  All users
+                </h3>
+                <!-- <button id="editBtn" type="submit" name="button" class="btn btn-info btn-sm "  data-toggle="modal"  >Изменить</button> -->
+<button id="editBtn" type="submit" name="button" class="btn btn-info btn-sm "  data-toggle="modal"  >Изменить</button>
+                <table class="table table-striped p-3 mb-2 bg-white text-dark">
+                  <thead class="bg-white">
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col" >Имя</th>
+                    <th scope="col">Фамилия</th>
+                    <th scope="col">Возраст</th>
+                    <th scope="col">Изменить</th>
+                    <th scope="col">Удалить</th>
+                  </tr>
+                  </thead>
+                <tbody id="data">
+
+                </tbody>
+              </table>
+            </div>
+            
+            <!-- -------------добавление юзера----------------- -->
+
+<div id="profile" class="tab-pane bg-white"  role="tabpanel" aria-labelledby="profile-tab">
+
+  <h4 class="bg-light border">Add new user</h4>
+  <br>
+  <div class="container bg-white text-center col-md-4 ">
+    <form id="creatUserForm">
+    <label for="createUsername" > <strong>Имя </strong> </label>
+    <input type="text"  field="*{name}" class="form-control" id="createUsername" placeholder="Введите имя" required>
+      
+    <label for="createSurname" > <strong>Фамилия </strong> </label>
+    <input type="text" field="*{surname}" class="form-control" id="createSurname" placeholder="Введите фамилия" required >
+
+    <label for="createAge" > <strong>Возраст </strong> </label>
+    <input type="number" field="*{age}" class="form-control" id="createAge" placeholder="Введите возраст" required >
+
+
+    <label for="createPassword" > <strong>password</strong> </label>
+    <input type="password" field="*{password}" class="form-control" id="createPassword" placeholder="Введите пароль" required >
+    <div class="form-group">
+      <label class="col-form-label font-weight-bold p-0" for="createRoles">Roles:</label>
+      <select class="custom-select form-control" size="2" id="createRoles"
+      multiple required>
+</select>
+  </div>
+    <button id="createBtn" type="button btn-sm " class="btn btn-success col-md-6">Добавить</button>
+    <br>
+    <br>
+    </form>
+  </div>
+
+
+</div>
+
+            
+          </div>
+        </div>
+<!-- ---------информация о текущем пользователе----------- -->
+
+  <div role="tabpanel" class="tab-pane bg-light" id="UserPanel">
+        <br>
+        <h3>
+          Информация о пользователе
+        </h3>
+        <table class="table table-striped">
+          <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Имя</th>
+            <th scope="col">Фамилия</th>
+            <th scope="col">Возраст</th>
+            <th scope="col">Роль</th>
+          </tr>
+          </thead>
+          <tbody id="bodyUserShow">
+         
+
+
+          </tbody>
+        </table>
+
+
+
+      </div>
+
+<!-- -----------конец блока информациф о текущем пользователе--------- -->
+
+        </div>
+      </div>
+    </div>
+
+<!-- -------------------Модальное окно на изменение -->
+
+    <div id="editModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <form id="editForm" >
+            <div class="modal-header">
+              <h5 class="modal-title" data-id="modalStaticBackdropLabel">Изменить</h5>
+              <button type="button" class="close" aria-label="Close" data-dismiss="modal">x</button>
+            </div>
+            <div class="modal-body">
+              <div class="container bg-white text-center col-md-12 ">
+                
+               <input id="editId" type="hidden"  name="editId" class="form-control"  placeholder="" required >
+      
+
+                <label for="editName" > <strong>Имя</strong> </label>
+                <input id="editName" type="text" class="form-control"  placeholder="Введите имя" required >
+
+                <label for="editSurname" > <strong>Фамилия</strong> </label>
+                <input id="editSurname" type="text" class="form-control"  placeholder="Введите фамилия" required >
+
+                <label for="editAge" > <strong>возраст</strong> </label>
+                <input  id="editAge" type="number" class="form-control" placeholder="Введите возраст" required >
+
+                <label for="editPassword" > <strong>пароль</strong> </label>
+                <input id="editPassword" type="password" class="form-control"  placeholder="Введите пароль" required>
+                <div class="form-group">
+                  <label class="col-form-label font-weight-bold" for="rolesEdit">Roles:</label>
+                  <select  class="form-select w-100" size="2" id="rolesEdit" multiple required> 
+                    <!-- <option value="" > </option>
+                    <option value=" "></option> -->
+                  </select>
+                  
+              </div>
+
+                <br>
+                <br>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+              <button id="modalEditBtn" type="submit" class="btn btn-primary">Изменить</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+<!-- ----------модальное окно на удаление------- -->
+
+
+<div  class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="deleteForm">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalStaticBackdropLabel">Удалить</h5>
+        <button type="button" class="close" aria-label="Close" data-dismiss="modal">x</button>
+      </div>
+      <div class="modal-body">
+        <div class="container bg-white text-center col-md-12 ">
+          <label for="deletedId" > <strong>ID</strong> </label>
+          <input th:type="text" value="${user.deleteId}" name="deleteId" class="form-control" id="deletedId" placeholder="" disabled >
+
+          <label for="deleteUsername" > <strong>Имя</strong> </label>
+          <input th:type="text" value="${user.username}" class="form-control" id="deleteUsername" placeholder="" disabled >
+
+          <label for="deleteSurname" > <strong>Фамилия</strong> </label>
+          <input th:type="text" value="${user.surname}" class="form-control" id="deleteSurname" placeholder="" disabled >
+
+          <label for="deleteAge" > <strong>возраст</strong> </label>
+          <input th:type="text" value="${user.age}" class="form-control" id="deleteAge" placeholder="" disabled >
+
+          <label for="deletePassword" > <strong>пароль</strong> </label>
+          <input type="password" class="form-control" id="deletePassword" placeholder="****" disabled >
+          <div class="form-group">
+            <label class="col-form-label font-weight-bold" for="rolesDelete">Roles:</label>
+            <select multiple class="form-select w-100" name="rolesEdit" id="rolesDelete" size="2"  disable>
+                
+            </select>
+        </div>
+          <br>
+          <br>
+        </div>
+      </div>
+      <div class="modal-footer">
+
+        <button id= "closeDeleteBtn" type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+
+
+        <button id="modelDeleteBtn" type="button" class="btn btn-danger" data-dismiss="modal" >Удалить</button>
+      </div>
+
+      </form>
+    </div>
+  </div>
+</div>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/code3.js"></script>
+
+
+
+  </body>
+</html>
